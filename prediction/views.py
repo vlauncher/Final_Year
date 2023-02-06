@@ -3,10 +3,10 @@ from prediction.serializers import PredictionSerializer
 from prediction.models import Prediction
 from rest_framework.response import Response
 from server.settings import model
-from django.views.generic import TemplateView
+from django.shortcuts import render
 
-class HomeView(TemplateView):
-    template_name = 'index.html'
+def index(request):
+    return render(request,template_name='index.html')
 
 
 class PredictionView(ListCreateAPIView):

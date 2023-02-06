@@ -1,7 +1,7 @@
 from django.urls import path
-from prediction.views import PredictionView,HomeView
+from prediction.views import PredictionView,index
 
 urlpatterns = [
-    path('',HomeView.as_view(),name='home'),
+    path('',index,name='home'),
     path('predict/',PredictionView.as_view(),name='prediction'),
 ]
