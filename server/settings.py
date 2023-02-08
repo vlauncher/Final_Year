@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # Custom apps
     'prediction.apps.PredictionConfig',
     'users.apps.UsersConfig',
+    'pages.apps.PagesConfig',
 ]
 
 MIDDLEWARE = [
