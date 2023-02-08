@@ -5,14 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
-import Routing from './Routing';
 import {Provider} from 'react-redux'
 import { store } from './features/store';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <Routing/>
     <App />
   </Provider>
 );

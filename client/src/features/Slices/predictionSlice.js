@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import {toast} from 'react-toastify'
 
 const initialState = {
   predictions: [],
@@ -14,7 +15,17 @@ export const makePrediction = createAsyncThunk(
   "prediction/create",
   async (data, thunkAPI) => {
     try {
-      const response = await axios.post("/predict/", data);
+      const token = thunkAPI.getState().auth.user["access"];
+      const response = await axios.post(
+        "/predict/",
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      toast.success('Predicton made')
       return response.data;
     } catch (error) {
       const message = error.response.data;
@@ -28,8 +39,31 @@ export const getResults = createAsyncThunk(
   "prediction/results",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/predict/");
-      console.log(response.data);
+      const token = thunkAPI.getState().auth.user["access"];
+      const response = await axios.get("/results/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      const message = error.response.data;
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// Get Pdf
+export const PrintResults = createAsyncThunk(
+  "prediction/print",
+  async (_, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user["access"];
+      const response = await axios.get("http://localhost:8000/print/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return response.data;
     } catch (error) {
       const message = error.response.data;
@@ -71,7 +105,7 @@ export const predictionSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-      });
+      })     
   },
 });
 
