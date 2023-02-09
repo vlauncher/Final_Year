@@ -70,7 +70,7 @@ const Register = () => {
         <div className="register-header">
           <h2 className="text-center p-4">Register</h2>
         </div>
-        <div className="register-card">
+        <div className="register-card" style={{ width:'45%',margin:'auto' }}>
           <div className="card">
             <div className="card-body">
               <form autoComplete="off" onSubmit={onSubmit}>

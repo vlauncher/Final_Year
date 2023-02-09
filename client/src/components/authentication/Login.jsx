@@ -61,7 +61,7 @@ const Login = () => {
         <div className="login-header">
           <h2 className="text-center p-4">Login</h2>
         </div>
-        <div className="login-card">
+        <div className="login-card" style={{ width:'45%',margin:'auto' }}>
           <div className="card">
             <div className="card-body">
               <form autoComplete="off" onSubmit={onSubmit}>

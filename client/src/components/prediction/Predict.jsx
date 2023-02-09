@@ -80,9 +80,9 @@ const Predict = () => {
       <div className="container-fluid">
         <div className="row">
           <div className="prediction-header">
-            <h2 className="number-center p-4">Prediction</h2>
+            <h2 className="number-center text-center">Prediction</h2>
           </div>
-          <div className="prediction-card">
+          <div className="prediction-card" style={{ width:'45%',margin:'auto' }}>
             <div className="card">
               <div className="card-body">
                 <form autoComplete="off" onSubmit={onSubmit}>
