@@ -27,7 +27,6 @@ const Results = () => {
             <th scope="col">Oldpeak</th>
             <th scope="col">Ca</th>
             <th scope="col">target</th>
-            <th scope="col">owner</th>
           </tr>
         </thead>
         <tbody>
@@ -45,7 +44,6 @@ const Results = () => {
               <td>{item.oldpeak}</td>
               <td>{item.ca}</td>
               <td>{item.target}</td>
-              <td>{item.owner}</td>
             </tr>
           ))}
         </tbody>

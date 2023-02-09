@@ -11,24 +11,21 @@ const initialState = {
 };
 
 // Create new prediction
-export const makePrediction = createAsyncThunk(
+export const createPrediction= createAsyncThunk(
   "prediction/create",
   async (data, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user["access"];
-      const response = await axios.post(
-        "/predict/",
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      const response = await axios.post("/api/predict/",data,{
+        headers:{
+          Authorization: `Bearer ${token}`,
         }
-      );
+      })
       toast.success('Predicton made')
       return response.data;
     } catch (error) {
       const message = error.response.data;
+      console.log(message)
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -40,11 +37,12 @@ export const getResults = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user["access"];
-      const response = await axios.get("/results/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      const response = await axios.get("/api/results/",{
+        headers : {
+          Authorization: `Bearer ${token}`
+        }
       });
+      console.log(token)
       return response.data;
     } catch (error) {
       const message = error.response.data;
@@ -53,24 +51,6 @@ export const getResults = createAsyncThunk(
   }
 );
 
-// Get Pdf
-export const PrintResults = createAsyncThunk(
-  "prediction/print",
-  async (_, thunkAPI) => {
-    try {
-      const token = thunkAPI.getState().auth.user["access"];
-      const response = await axios.get("http://localhost:8000/print/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      const message = error.response.data;
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
 
 export const predictionSlice = createSlice({
   name: "prediction",
@@ -80,15 +60,15 @@ export const predictionSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(makePrediction.pending, (state) => {
+      .addCase(createPrediction.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(makePrediction.fulfilled, (state, action) => {
+      .addCase(createPrediction.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.predictions.push(action.payload);
       })
-      .addCase(makePrediction.rejected, (state, action) => {
+      .addCase(createPrediction.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

@@ -5,4 +5,4 @@ class PredictionSerializer(ModelSerializer):
 
     class Meta:
         model = Prediction
-        fields = '__all__'
+        exclude = ('user',)

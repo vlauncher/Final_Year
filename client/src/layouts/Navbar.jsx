@@ -17,12 +17,12 @@ const Navbar = () => {
   return (
     <div>
       <nav
-        className="navbar navbar-expand-lg bg-body-tertiary bg-dark "
+        className="navbar navbar-expand-lg bg-body-tertiary bg-success "
         data-bs-theme="dark"
       >
         <div className="container-fluid">
           <Link className="navbar-brand" to="#">
-            Navbar
+            HeartPredv1
           </Link>
           <button
             className="navbar-toggler"

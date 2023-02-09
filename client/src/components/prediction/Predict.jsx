@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { reset, makePrediction } from "../../features/Slices/predictionSlice";
+import { reset, createPrediction} from "../../features/Slices/predictionSlice";
 import Spinner from "../../layouts/Spinner";
 
 const Predict = () => {
@@ -69,7 +69,7 @@ const Predict = () => {
       ca,
     };
 
-    dispatch(makePrediction(userData));
+    dispatch(createPrediction(userData));
   };
 
   if (isLoading) {
