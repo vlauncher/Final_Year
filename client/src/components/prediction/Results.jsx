@@ -8,7 +8,7 @@ const Results = () => {
 
   useEffect(() => {
     dispatch(getResults());
-  }, [dispatch]);
+  }, []);
   return (
     <div>
       <h2>Results</h2>
